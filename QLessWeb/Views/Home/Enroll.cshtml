@@ -1,0 +1,81 @@
+﻿@*
+  For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model QLessWeb.ViewModel.CreatePassengerVM
+
+
+<h1> Passenger Enrollment</h1>
+<form id="enrollment">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="txtCardType">Card Type</label>
+      <select id="txtCardType" name="CardTypeID" class="form-control">
+        @foreach (var card in Model.CardTypes) {
+          <option validity="@card.Validity" initial-load="@card.InitialLoad" value="@card.CardTypeID">@card.Name</option>
+        }
+      </select>
+    </div>
+  </div>
+
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="txtFirstName">First Name</label>
+      <input type="text" name="FirstName" class="form-control alphabet required" id="txtFirstName" placeholder="First Name">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="txtLastName">Last Name</label>
+      <input type="text" name="LastName" class="form-control alphabet required" id="txtLastName" placeholder="Last Name">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="txtContactNumber">Contact Number</label>
+      <input type="text" name="ContactNumber" class="form-control numeric required" id="txtContactNumber" placeholder="09760407893">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="txtEmailAddress">Email Address</label>
+      <input type="text" name="EmailAddress" class="form-control email" id="txtEmailAddress" placeholder="lance.parcero@gmail.com">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="txtDateOfBirth">Date of Birth</label>
+      <input type="date" name="DateOfBirth" class="form-control required" id="txtDateOfBirth" placeholder="Date of Birth">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="txtClassification">Classification</label>
+      <select id="txtClassification" name="ClassificationID" class="form-control">
+        @foreach (var cl in Model.Classification) {
+          <option value="@cl.ClassificationID">@cl.ClassificationName</option>
+        }
+      </select>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="txtAdditionalID">Additional ID</label>
+      <input type="text" name="AdditionalID" class="form-control" id="txtAdditionalID" placeholder="Additional ID" maxlength="20">
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="txtLoad">Base Load</label>
+      <input readonly type="text" class="form-control" id="txtLoad">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="txtValidity">Validity(Years)</label>
+      <input readonly type="number" class="form-control" id="txtValidity">
+    </div>
+
+  </div>
+  <a id="btnEnroll" class="btn btn-primary">Enroll</a>
+
+</form>
+<script src="~/js/Enrollment/enrollment.js"></script>
+<script src="~/lib/jquery.mask.min.js"></script>
+<script src="~/lib/jquery.serialize-object.min.js"></script>

@@ -1,0 +1,40 @@
+﻿@{
+  ViewData["Title"] = "Passengers";
+}
+
+@model List<Models.Tables.tbl_passenger>
+
+<div class="text-center">
+  <h1 class="display-4">Welcome</h1>
+</div>
+
+
+<a asp-controller="Home" asp-action="Enroll">Enroll Passenger</a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">CardNumber</th>
+      <th scope="col">CardType</th>
+      <th scope="col">ID Type</th>
+      <th scope="col">CurrentLoad</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var passenger in Model) {
+    <tr>
+      <td>@passenger.FirstName</td>
+      <td>@passenger.LastName</td>
+      <td>@passenger.CardNumber</td>
+      <td>@passenger.CardType.Name</td>
+      <td>@passenger.Classification.ClassificationName</td>
+      <td>@passenger.Balance</td>
+      <td><a asp-controller="Transaction" asp-action="Terminal" asp-route-id="@passenger.CardNumber">Deduct</a></td>
+      <td><a asp-controller="Loading" asp-action="Card" asp-route-id="@passenger.CardNumber">Load</a></td>
+    </tr>
+    }
+  </tbody>
+</table>

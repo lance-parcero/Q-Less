@@ -1,0 +1,39 @@
+﻿@*
+  For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Models.Tables.tbl_transactions>
+
+
+<table class="table table-responsive table-bordered table-striped table-hover">
+  
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Time</th>
+      <th scope="col">Type</th>
+      <th scope="col">Station</th>
+      <th scope="col">Current Load</th>
+      <th scope="col">New Load</th>
+      <th scope="col">Current Rate</th>
+      <th scope="col">Deduction</th>
+      <th scope="col">Discount</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var item in Model) {
+      <tr>
+        <td>@item.TimeOfEntry.ToString("MMMM dd yyyy mm:ss:ff")</td>
+        <td>@item.TypeOfEntry</td>
+        <td>@item.StationID</td>
+        <td>@item.CurrentLoad</td>
+        <td>@item.NewLoad</td>
+        <td>@item.CurrentRate</td>
+        <td>@item.Deduction</td>
+        <td>@item.Discount</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+

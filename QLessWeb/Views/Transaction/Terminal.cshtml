@@ -1,0 +1,30 @@
+﻿@*
+  For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model QLessWeb.ViewModel.TerminalVM
+
+<h2>Terminal</h2>
+<h4 id="h3-1" card-number="@ViewBag.CardNumber">Your Card Number : @ViewBag.CardNumber</h4>
+<h4>Current Load : <label id="lblCurrentLoad">@Model.Passenger.Balance</label></h4>
+<h4>Card Type : <label id="lblCurrentLoad">@Model.Passenger.CardType.Name</label></h4>
+
+<button type="button" id="btn-deduct" class="btn btn-primary btn-lg btn-block" @(Model.Passenger.CardExpiry < DateTime.Now ? "disabled" : "")>Deduct <span id="loading" class="d-none">Loading...</span></button>
+<button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  View Transactions
+</button>
+<br />
+
+<h2 id="message" class=""></h2>
+
+<p>
+
+</p>
+<div class="collapse" id="collapseExample">
+  <div id="transaction-container">
+    <partial name="_PartialTransactions" model="@Model.Transactions" />
+  </div>
+</div>
+
+<script src="~/js/Terminal/deduction.js"></script>
