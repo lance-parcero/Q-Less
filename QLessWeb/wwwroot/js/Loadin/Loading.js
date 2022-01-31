@@ -6,17 +6,22 @@
     var currentLoad = $('#lblCurrentLoad').text();
     var cardNumber = $('#h3-1').attr('card-number');
     if (+money >= +load) {
-      if (+load + +currentLoad <= 1000) {
-        $.post("/Loading/Load", { cardNumber, load }, function (ret) {
-          var change = +money - +load;
-          $('.card').removeClass('d-none');
-          $("#lblAmountLoaded").text(load);
-          $("#lblCustomerMoney").text(money);
-          $("#lblChange").text(change);
-          $("#lblNewBalance").text(ret);
-          $('#lblCurrentLoad').text(ret);
-        });
-        $("#message").text("Load Complete").css('color', 'black');
+        if (+load + +currentLoad <= 1000) {
+            if (+load >= 100 && +load<=1000) {
+                $.post("/Loading/Load", { cardNumber, load }, function (ret) {
+                    var change = +money - +load;
+                    $('.card').removeClass('d-none');
+                    $("#lblAmountLoaded").text(load);
+                    $("#lblCustomerMoney").text(money);
+                    $("#lblChange").text(change);
+                    $("#lblNewBalance").text(ret);
+                    $('#lblCurrentLoad').text(ret);
+                });
+                $("#message").text("Load Complete").css('color', 'black');
+            }
+            else {
+                $('.card').addClass('d-none');
+                $("#message").text('Amount to load should be between 100-1000').css('color', 'red'); }
       }
       else {
         $('.card').addClass('d-none');
