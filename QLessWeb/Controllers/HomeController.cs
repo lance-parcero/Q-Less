@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace QLessWeb.Controllers {
   public class HomeController : Controller {
     private readonly ILogger<HomeController> _logger;
-    private readonly IQLessSvc _svc;
+    private readonly IQLessSvc _svc;//test
     public HomeController(ILogger<HomeController> logger, IQLessSvc svc) {
       _logger = logger;
       _svc = svc;
